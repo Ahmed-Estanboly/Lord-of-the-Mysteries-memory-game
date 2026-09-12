@@ -1,6 +1,6 @@
 # Tarot Memory Game
 
-An atmospheric browser memory game inspired by Lord of the Mystries tarot cards. Reveal two cards at a time, remember their locations, and match every pair with the fewest moves and the best time possible.
+An atmospheric browser memory game inspired by Lord of the Mysteries tarot cards. Reveal two cards at a time, remember their locations, and match every pair with the fewest moves and the best time possible.
 
 ## Features
 
