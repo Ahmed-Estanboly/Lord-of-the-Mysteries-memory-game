@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="main-menu">
+      <div id="start-menu-reg">
+        <h1>Welcome to the Tarot Memory Game</h1>
+        <input
+          type="text"
+          name="player-name"
+          placeholder="Enter Your Name ..."
+          id="player-name"
+        />
+        <label for="difficulty">Choose difficulty</label>
+        <select id="difficulty" name="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <button id="start-game">Start Game</button>
+      </div>
+      <div id="rules">
+        <h2>Rules of the Arcane Recall</h2>
+        <p>
+          Beyond the gray mist, every card conceals a counterpart. Your task is
+          to unveil the matching pairs before your concentration fades.
+        </p>
+        <ol>
+          <li>Choose two cards each turn to reveal their symbols.</li>
+          <li>
+            If the symbols match, the pair is claimed and remains revealed.
+          </li>
+          <li>
+            If they differ, commit their locations to memory; they will be
+            veiled again.
+          </li>
+          <li>Continue until every pair has been claimed.</li>
+        </ol>
+        <p>
+          <strong>Warning:</strong> Careless guesses invite confusion. Observe
+          closely, remember everything, and trust neither the first impression
+          nor the darkness between cards.
+        </p>
+      </div>
+    </div>
+    <div id="game-page">
+      <div id="header">
+        <div id="timer">00:00</div>
+        <h2></h2>
+        <div id="moves-counter">0</div>
+      </div>
+      <div id="main-body">
+        <div id="side-panel">
+          <div id="score">0</div>
+          <section id="leaderboard">
+            <h2 id="leaderboard-title">Top 3 Recallers</h2>
+            <ol>
+            </ol>
+          </section>
+          <div id="control-btns">
+            <button id="restart" onclick="restartGame()">Restart</button>
+            <button id="back">Back to Main Menu</button>
+            <button id="mute"></button>
+          </div>
+        </div>
+        <div id="cards-container"></div>
+      </div>
+    </div>
+    <div id="win-screen"></div>
+    </div>
+    <script src="js/ui.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/game.js"></script>
+  </body>
+</html>
