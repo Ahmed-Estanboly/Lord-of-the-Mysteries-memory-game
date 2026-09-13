@@ -4,15 +4,15 @@ winningMusic.volume = 0.7;
 
 const matchingMusic = new Audio("audio/match.mp3");
 matchingMusic.loop = false;
-matchingMusic.volume = 0.5;
+matchingMusic.volume = 0.4;
 
 const notMatchingMusic = new Audio("audio/wrong.mp3");
 notMatchingMusic.loop = false;
-notMatchingMusic.volume = 0.5;
+notMatchingMusic.volume = 0.4;
 
 const flippedMusic = new Audio("audio/card-flip.mp3");
 flippedMusic.loop = false;
-flippedMusic.volume = 0.5;
+flippedMusic.volume = 0.4;
 
 let seconds = 0;
 let timerInterval;
@@ -50,7 +50,9 @@ function updateMoves() {
     clickCount / 2,
   );
 }
-
+function resetFirstClick(){
+  firstClick = false;
+}
 function startGame() {
   stopTimer();
   seconds = 0;
@@ -59,9 +61,9 @@ function startGame() {
   updateMoves();
   updateScore();
   updateTimerDisplay();
+  renderCards();
   renderLeaderboard(leaderboard);
   introMusic.play().catch(()=>{});
-  firstClick = false;
 }
 
 function checkMatching(card1, card2) {
@@ -105,11 +107,12 @@ document
     if (!card || card.classList.contains("matched") || lastCard === card)
       return;
     if (!firstClick) {
-      startGame();
       startTimer();
+      firstClick = true;
     }
-    firstClick = true;
+
     card.classList.add("flipped");
+    // console.log("Card flipped:", card.dataset.id);
     flippedMusic.currentTime = 0;
     flippedMusic.play().catch(() => {});
 
@@ -118,6 +121,8 @@ document
     }
     lastCard = card;
     clickCount++;
+    updateMoves();
+    updateScore();
     if (
       document.getElementsByClassName("card").length ===
       document.getElementsByClassName("matched").length

@@ -45,17 +45,16 @@ document.addEventListener("contextmenu", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    const key = event.key.toLowerCase();
-    const devToolsShortcut =
-        event.key === "F12" ||
-        (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) ||
-        (event.ctrlKey && key === "u");
+  const key = event.key.toLowerCase();
+  const devToolsShortcut =
+    event.key === "F12" ||
+    (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) ||
+    (event.ctrlKey && key === "u");
 
-    if (devToolsShortcut) {
-        event.preventDefault();
-    }
+  if (devToolsShortcut) {
+    event.preventDefault();
+  }
 });
-
 
 let difficaltyLevel;
 
@@ -103,7 +102,13 @@ function renderCards() {
   for (let i = 0; i < outputCards.length; i++) {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.classList.add(difficaltyLevel === 6 ? "easy" : difficaltyLevel === 8 ? "medium" : "hard")
+    card.classList.add(
+      difficaltyLevel === 6
+        ? "easy"
+        : difficaltyLevel === 8
+          ? "medium"
+          : "hard",
+    );
     card.dataset.id = outputCards[i].id;
     card.innerHTML = `
         <div class="card-inner">
@@ -118,7 +123,7 @@ function renderCards() {
     container.appendChild(card);
   }
 }
-function showWinnerMessege(){
+function showWinnerMessege() {
   let winScreen = document.getElementById("win-screen");
   let winner = document.getElementById("player-name").value.toUpperCase();
   let score = document.getElementById("score").textContent;
@@ -136,12 +141,17 @@ function showWinnerMessege(){
           <button id="save-score" onclick="saveScore()">Save Score</button>
         </div>
   `;
-  setTimeout(()=>{
-      winScreen.style.display = "flex";
-  },1000);
-  setTimeout(()=>{
-    winningMusic.play().catch(()=>{});
-  },1500);
+  setTimeout(() => {
+    winScreen.style.display = "flex";
+  }, 1000);
+  setTimeout(() => {
+    winningMusic.play().catch(() => {});
+  }, 1300);
+}
+function resetInput() {
+  document.getElementById("player-name").value = "";
+  document.getElementById("player-name").style.border =
+    "1px solid rgba(212, 184, 121, 0.42)";
 }
 document.getElementById("start-game").addEventListener("click", () => {
   let playerName = document.getElementById("player-name").value;
@@ -151,7 +161,6 @@ document.getElementById("start-game").addEventListener("click", () => {
   }
   document.getElementById("header").querySelector("h2").innerText = playerName;
   introMusic.play().catch(() => {});
-  startGame()
   document.getElementById("main-menu").classList.add("hide");
   document.getElementById("game-page").classList.add("show");
   difficaltyLevel =
@@ -160,20 +169,17 @@ document.getElementById("start-game").addEventListener("click", () => {
       : document.getElementById("difficulty").value === "medium"
         ? 8
         : 10;
-  renderCards();
-  renderLeaderboard(leaderboard);
-});
-document.getElementById("back").addEventListener("click", () => {
-  introMusic.pause();
-  introMusic.currentTime = 0;
-  document.getElementById("player-name").value = "";
-  document.getElementById("player-name").style.border =
-    "1px solid rgba(212, 184, 121, 0.42)";
-  document.getElementById("main-menu").classList.remove("hide");
-  document.getElementById("game-page").classList.remove("show");
+  resetFirstClick();
   startGame();
 });
-
+document.getElementById("back").addEventListener("click", () => {
+  stopTimer();
+  introMusic.pause();
+  introMusic.currentTime = 0;
+  resetInput();
+  document.getElementById("main-menu").classList.remove("hide");
+  document.getElementById("game-page").classList.remove("show");
+});
 
 document.getElementById("mute").addEventListener("click", () => {
   musicMuted = !musicMuted;
@@ -186,13 +192,11 @@ document.getElementById("mute").addEventListener("click", () => {
 });
 
 function backToMenu() {
+  stopTimer();
   introMusic.pause();
   introMusic.currentTime = 0;
-  document.getElementById("player-name").value = "";
-  document.getElementById("player-name").style.border =
-    "1px solid rgba(212, 184, 121, 0.42)";
+  resetInput();
   document.getElementById("main-menu").classList.remove("hide");
   document.getElementById("game-page").classList.remove("show");
   document.getElementById("win-screen").style.display = "none";
-  startGame();
 }
