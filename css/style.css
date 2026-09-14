@@ -30,7 +30,6 @@ body {
   height: 100dvh;
   display: flex;
   gap: 7rem;
-  /* align-items: center; */
   justify-content: center;
   padding: 4rem 6rem 2rem 6rem;
   overflow: hidden;
@@ -88,7 +87,6 @@ body {
 }
 #start-menu-reg {
   width: 40%;
-  height: auto;
   padding: 4.5rem 3.5rem;
   text-align: center;
 }
@@ -192,7 +190,6 @@ body {
 }
 #rules {
   width: 40%;
-  height: auto;
   padding: 3rem 3rem 2rem 3rem;
   color: var(--muted-ink);
   font-size: 0.88rem;
@@ -321,6 +318,7 @@ body {
     600 1.15rem "Cinzel",
     Georgia,
     serif;
+  font-variant-numeric: tabular-nums;
   text-align: center;
 }
 #timer::before {
@@ -330,16 +328,15 @@ body {
   content: "MOVES";
 }
 #score {
-  position: relative;
   height: 3rem;
   padding: 0.4rem 1rem;
-  place-items: center;
   border: 1px solid rgba(212, 184, 121, 0.34);
   color: var(--gold);
   font:
     600 1.7rem "Cinzel",
     Georgia,
     serif;
+  font-variant-numeric: tabular-nums;
   text-shadow: 0 0 16px rgba(212, 184, 121, 0.25);
   background: linear-gradient(
     145deg,
@@ -354,8 +351,6 @@ body {
 #score::before {
   content: "SCORE:";
   display: inline-block;
-  top: 0.45rem;
-  left: 0;
   margin-right: 1rem;
   width: 5rem;
   color: var(--muted-ink);
@@ -448,7 +443,6 @@ body {
 #leaderboard {
   display: block;
   width: 100%;
-  margin-top: 0rem;
   padding: 1rem 0.75rem;
   border-top: 1px solid rgba(212, 184, 121, 0.28);
   border-bottom: 1px solid rgba(212, 184, 121, 0.28);
@@ -530,8 +524,8 @@ body {
   margin: 0.5rem;
 }
 .card.easy {
-  width: 134px;
-  height: 220px;
+  width: 140px;
+  height: 230px;
 }
 .card.medium {
   width: 120px;
@@ -896,11 +890,6 @@ body {
     width: 42vw;
     font-size: 1rem;
     letter-spacing: 0.03em;
-  }
-
-  #header h2::before,
-  #header h2::after {
-    display: none;
   }
 
   #header #timer,

@@ -60,7 +60,7 @@ let difficaltyLevel;
 
 const introMusic = new Audio("audio/intro.mp3");
 introMusic.loop = true;
-introMusic.volume = 0.37;
+introMusic.volume = 0.4;
 let musicMuted = false;
 
 function shuffleArray(array) {
